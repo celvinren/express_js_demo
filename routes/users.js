@@ -1,40 +1,16 @@
 // routes/users.js
 const express = require('express');
 const router = express.Router();
-const db = require('../config/database');
+const { getUsers, getUser } = require('../controllers/usersController');
 
 let users = [
   { id: 1, name: 'John Doe' },
   { id: 2, name: 'Jane Doe' }
 ];
 
-router.get('/', async (req, res) => {
-  console.log('GET /users');
-  try {
-    const result = await db.query('SELECT id, firstname, lastname, email FROM users');
-    const userList = result.rows;
+router.get('/', getUsers);
 
-    console.log(result);
-    res.json(userList);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("Error while getting current time");
-  }
-});
-
-router.get('/:id', async (req, res) => {
-  console.log('GET /users');
-  try {
-    const result = await db.query('SELECT id, firstname, lastname, email FROM users where id = $1', [req.params.id]);
-    const user = result.rows;
-
-    // console.log(result);
-    res.json(user);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("Error while getting current time");
-  }
-});
+router.get('/:id', getUser);
 
 router.post('/', (req, res) => {
   const user = {
