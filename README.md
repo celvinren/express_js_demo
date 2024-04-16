@@ -28,3 +28,8 @@ email VARCHAR(100)
 );
 
 INSERT INTO users (id, firstName,lastName, email) VALUES ('0b2f5864-0263-4f2b-bd11-32906292e2ba','Calvin','Ren', 'Calvin.Ren@example.com');
+
+## Hot reload
+
+npm install -g nodemon
+nodemon app.js

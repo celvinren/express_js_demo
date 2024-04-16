@@ -22,10 +22,18 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/:id', (req, res) => {
-  const user = users.find(u => u.id === parseInt(req.params.id));
-  if (!user) return res.status(404).send('User not found');
-  res.json(user);
+router.get('/:id', async (req, res) => {
+  console.log('GET /users');
+  try {
+    const result = await db.query('SELECT id, firstname, lastname, email FROM users where id = $1', [req.params.id]);
+    const user = result.rows;
+
+    // console.log(result);
+    res.json(user);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error while getting current time");
+  }
 });
 
 router.post('/', (req, res) => {
