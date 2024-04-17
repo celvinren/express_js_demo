@@ -11,9 +11,28 @@ let users = [
   { id: 2, name: 'Jane Doe' }
 ];
 
-router.get('/', authenticateToken, getUsers);
+router.get('/', authenticateToken, async (req: any, res: any) => {
+  console.log('GET /users');
+  try {
+    const result = await getUsers();
+    res.json(result);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error while getting current time");
+  }
 
-router.get('/:id', authenticateToken, getUser);
+});
+
+router.get('/:id', authenticateToken, async (req: any, res: any) => {
+  try {
+    const userId = req.params.id;
+    const user = await getUser(userId);
+    res.json(user);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error while getting current time");
+  }
+});
 
 router.post('/', (req: any, res: any) => {
   const user = {
