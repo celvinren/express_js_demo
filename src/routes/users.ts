@@ -6,7 +6,7 @@ import { User } from '../models/userModel';
 
 const router = Router();
 
-let users = [
+let _users = [
   { id: 1, name: 'John Doe' },
   { id: 2, name: 'Jane Doe' }
 ];
@@ -36,22 +36,22 @@ router.get('/:id', authenticateToken, async (req: any, res: any) => {
 
 router.post('/', (req: any, res: any) => {
   const user = {
-    id: users.length + 1,
+    id: _users.length + 1,
     name: req.body.name
   };
-  users.push(user);
+  _users.push(user);
   res.status(201).json(user);
 });
 
 router.put('/:id', (req: any, res: any) => {
-  const user = users.find(u => u.id === parseInt(req.params.id));
+  const user = _users.find(u => u.id === parseInt(req.params.id));
   if (!user) return res.status(404).send('User not found');
   user.name = req.body.name;
   res.json(user);
 });
 
 router.delete('/:id', (req: any, res: any) => {
-  users = users.filter(u => u.id !== parseInt(req.params.id));
+  _users = _users.filter(u => u.id !== parseInt(req.params.id));
   res.status(204).send();
 });
 
@@ -69,5 +69,5 @@ router.post('/refreshToken', (req: any, res: any) => {
   res.json({ accessToken });
 });
 
-export { router };
+export default router;
 

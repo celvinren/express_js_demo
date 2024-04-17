@@ -1,11 +1,13 @@
 import express from 'express';
-import { router } from './routes/users';
+import auth from './routes/auth';
+import users from './routes/users';
 const app = express();
 
 app.use(express.json()); // for parsing JSON formatted request bodies
 
 // use users routes
-app.use('/users', router);
+app.use('/users', users);
+app.use('/auth', auth);
 
 // RESTful API routes
 app.get('/', (res: any) => {
