@@ -41,9 +41,9 @@ router.post('/refreshToken', async (req: any, res: any) => {
     // verify refresh token
     var parsedUser;
     try {
-        const decoded = jwt.verify(refreshToken, process.env.JWT_SECRET!, { algorithms: ['HS256'] }); // replace with your refresh token secret
+        const decoded = jwt.verify(refreshToken, process.env.JWT_SECRET!, { algorithms: ['HS256'], ignoreExpiration: true }); // replace with your refresh token secret
         parsedUser = decoded as User;
-    } catch {
+    } catch (error) {
         return res.sendStatus(403); // invalid refresh token, return 403 Forbidden
     }
 
