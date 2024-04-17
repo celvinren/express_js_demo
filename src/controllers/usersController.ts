@@ -1,6 +1,6 @@
 const db = require('../config/database');
 
-async function getUsers(req, res) {
+async function getUsers(req:any,res: any) {
     console.log('GET /users');
     console.log(req.user);
     try {
@@ -15,7 +15,7 @@ async function getUsers(req, res) {
     }
 }
   
-async function getUser(req, res) {
+async function getUser(req:any,res: any) {
     console.log('GET /users');
     try {
         const result = await db.query('SELECT id, firstname, lastname, email FROM users where id = $1', [req.params.id]);
@@ -29,8 +29,7 @@ async function getUser(req, res) {
     }
 }
 
-module.exports = {
-    getUsers,
-    getUser
+export {
+    getUser, getUsers
 };
   

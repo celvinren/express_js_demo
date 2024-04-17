@@ -1,8 +1,8 @@
 // routes/users.js
 const express = require('express');
 const router = express.Router();
-const { getUsers, getUser } = require('../controllers/usersController');
-const { authenticateToken, generateAccessToken } = require('../middlewares/authMiddleware');
+const {authenticateToken,generateAccessToken}  = require('../middlewares/authMiddleware');
+import { getUser, getUsers } from '../controllers/usersController';
 
 let users = [
   { id: 1, name: 'John Doe' },
@@ -13,7 +13,7 @@ router.get('/', authenticateToken, getUsers);
 
 router.get('/:id', authenticateToken, getUser);
 
-router.post('/', (req, res) => {
+router.post('/', (req: any, res:any) => {
   const user = {
     id: users.length + 1,
     name: req.body.name
@@ -22,20 +22,20 @@ router.post('/', (req, res) => {
   res.status(201).json(user);
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', (req: any, res:any) => {
   const user = users.find(u => u.id === parseInt(req.params.id));
   if (!user) return res.status(404).send('User not found');
   user.name = req.body.name;
   res.json(user);
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', (req: any, res:any) => {
   users = users.filter(u => u.id !== parseInt(req.params.id));
   res.status(204).send();
 });
 
 
-router.post('/refreshToken', (req, res) => {
+router.post('/refreshToken', (req: any, res:any) => {
   // // get refresh token from request body
   // const refreshToken = req.body.refreshToken;
   // if (refreshToken == null) return res.sendStatus(401); // did not provide refresh token, return 401 Unauthorized
@@ -48,4 +48,5 @@ router.post('/refreshToken', (req, res) => {
   res.json({ accessToken });
 });
 
-module.exports = router;
+export { router };
+

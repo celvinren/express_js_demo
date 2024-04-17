@@ -7,15 +7,20 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch via Nodemon",
+            "name": "nodemon",
             "runtimeExecutable": "nodemon",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
             "restart": true,
+            "runtimeArgs": [
+                "--exec",
+                "ts-node",
+                "--transpile-only",
+                "-e",
+                "ts", // listen to ts file
+                "--",
+                "${workspaceFolder}/src/app.ts" // entry point
+            ],
             "console": "integratedTerminal",
-            "internalConsoleOptions": "neverOpen",
-            "program": "${workspaceFolder}/app.js"
+            "internalConsoleOptions": "neverOpen"
         }
     ]
 }

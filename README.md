@@ -1,3 +1,8 @@
+Add package to dev dependencies:
+npm install --save-dev <package-name>
+Add package to dependencies:
+npm install <package-name>
+
 ## To start a test Postgres database, run the following command:
 
 docker compose up
@@ -33,3 +38,14 @@ INSERT INTO users (id, firstName,lastName, email) VALUES ('0b2f5864-0263-4f2b-bd
 
 npm install -g nodemon
 nodemon app.js
+nodemon src/app.ts
+
+## Convert to typescript
+
+npm install @types/node @types/express
+npm install --save-dev typescript ts-node
+
+Install typescript
+npm install -g typescript
+After this, you can run tsc --init to create a tsconfig.json file.
+tsc

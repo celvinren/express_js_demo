@@ -1,14 +1,14 @@
-const express = require('express');
+import express from 'express';
+import { router } from './routes/users';
 const app = express();
-const userRoutes = require('./routes/users');
 
 app.use(express.json()); // for parsing JSON formatted request bodies
 
 // use users routes
-app.use('/users', userRoutes);
+app.use('/users', router);
 
 // RESTful API routes
-app.get('/', (req, res) => {
+app.get('/', (res: any) => {
   res.send('Welcome to the RESTful API!');
 });
 
