@@ -1,8 +1,7 @@
 // routes/users.js
 import { Router } from 'express';
 import { getUser, getUsers } from '../controllers/usersController';
-import { authenticateToken, generateAccessToken } from '../middlewares/authMiddleware';
-import { User } from '../models/userModel';
+import { authenticateToken } from '../middlewares/authMiddleware';
 
 const router = Router();
 
@@ -53,20 +52,6 @@ router.put('/:id', (req: any, res: any) => {
 router.delete('/:id', (req: any, res: any) => {
   _users = _users.filter(u => u.id !== parseInt(req.params.id));
   res.status(204).send();
-});
-
-
-router.post('/refreshToken', (req: any, res: any) => {
-  // // get refresh token from request body
-  // const refreshToken = req.body.refreshToken;
-  // if (refreshToken == null) return res.sendStatus(401); // did not provide refresh token, return 401 Unauthorized
-
-  // TODO: implement refresh token verification, and check user's details in the database
-
-  // // generate new access token
-  const user: User = { firstName: 'John', lastName: 'Doe', email: 'john.doe@example.com' };
-  const accessToken = generateAccessToken(user);
-  res.json({ accessToken });
 });
 
 export default router;

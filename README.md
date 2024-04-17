@@ -27,12 +27,12 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 CREATE TABLE users (
 id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-firstName VARCHAR(100),
-lastName VARCHAR(100),
+first_name VARCHAR(100),
+last_name VARCHAR(100),
 email VARCHAR(100)
 );
 
-INSERT INTO users (id, firstName,lastName, email) VALUES ('0b2f5864-0263-4f2b-bd11-32906292e2ba','Calvin','Ren', 'Calvin.Ren@example.com');
+INSERT INTO users (id, first_name,last_name, email) VALUES ('0b2f5864-0263-4f2b-bd11-32906292e2ba','Calvin','Ren', 'Calvin.Ren@example.com');
 
 ## Hot reload
 

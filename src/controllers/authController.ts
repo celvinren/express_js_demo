@@ -37,8 +37,8 @@ export { login, signUp };
 async function main() {
     try {
         // const signUpUser = await signUp({
-        //     firstName: 'Amy1',
-        //     lastName: 'Test1',
+        //     first_name: 'Amy1',
+        //     last_name: 'Test1',
         //     email: 'Amy.Test1@ex.com',
         //     password: 'password'
         // });
