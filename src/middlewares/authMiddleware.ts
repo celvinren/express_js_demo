@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 
 // generate JWT
 function generateAccessToken(user: User) {
-  return jwt.sign(user, process.env.JWT_SECRET, {algorithm: 'HS256', expiresIn: '2h' });
+  return jwt.sign(user, process.env.JWT_SECRET, { algorithm: 'HS256', expiresIn: '2h' });
 }
 
 // user verification

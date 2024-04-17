@@ -1,10 +1,10 @@
 
 interface User {
-    id: String;
+    id?: String;
     firstName: string;
     lastName: string;
     email: string;
-    password: string;
+    password?: string;
 }
 
 export { User };
