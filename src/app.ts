@@ -10,7 +10,7 @@ app.use('/users', users);
 app.use('/auth', auth);
 
 // RESTful API routes
-app.get('/', (res: any) => {
+app.get('/', (req, res: any) => {
   res.send('Welcome to the RESTful API!');
 });
 
